@@ -4268,7 +4268,7 @@ class PlayState extends MusicBeatState
 		numScore.y = gf.y + 80;
 		} else {
 		numScore.cameras = [camHUD];	
-		numScore.x = coolText.x + (43 * daLoop) - 9
+		numScore.x = coolText.x + (43 * daLoop) - 9;
 		numScore.y += 80;
 		}
 			//numScore.cameras = [camHUD];
