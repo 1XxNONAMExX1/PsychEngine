@@ -4172,15 +4172,9 @@ class PlayState extends MusicBeatState
 
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
 		
-		if (!ClientPrefs.ratingGame){
-		rating.cameras = [camGame];
-		} else {
-		rating.cameras = [camHUD];
-		}
+		
 		
 		rating.screenCenter();
-		rating.x = coolText.x - 40;
-		rating.y -= 60;
 		rating.acceleration.y = 550 * playbackRate * playbackRate;
 		rating.velocity.y -= FlxG.random.int(140, 175) * playbackRate;
 		rating.velocity.x -= FlxG.random.int(0, 10) * playbackRate;
@@ -4199,6 +4193,18 @@ class PlayState extends MusicBeatState
 		comboSpr.y -= ClientPrefs.comboOffset[1];
 		comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
+		
+		if (!ClientPrefs.ratingGame){
+		rating.cameras = [camGame];
+		comboSpr.cameras = [camGame];
+		rating.x = gf.x - 40
+		rating.y = gf.y - 60
+		} else {
+		rating.cameras = [camHUD];	
+		comboSpr.cameras = [camHUD];
+		rating.x = coolText.x - 40;
+		rating.y -= 60;
+		}
 
 		insert(members.indexOf(strumLineNotes), rating);
 		
@@ -4255,11 +4261,18 @@ class PlayState extends MusicBeatState
 		for (i in seperatedScore)
 		{
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
-			numScore.cameras = [camHUD];
+			
+		if (!ClientPrefs.ratingGame){
+		numScore.cameras = [camGame];
+		numScore.x = gf.x - (43 * daLoop) - 90;
+		numScore.y = gf.y + 80;
+		} else {
+		numScore.cameras = [camHUD];	
+		numScore.x = coolText.x + (43 * daLoop) - 9
+		numScore.y += 80;
+		}
+			//numScore.cameras = [camHUD];
 			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 90;
-			numScore.y += 80;
-
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
 			
