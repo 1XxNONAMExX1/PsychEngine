@@ -4197,8 +4197,8 @@ class PlayState extends MusicBeatState
 		if (!ClientPrefs.ratingGame){
 		rating.cameras = [camGame];
 		comboSpr.cameras = [camGame];
-		rating.x = gf.x - 40
-		rating.y = gf.y - 60
+		rating.x = gf.x - 40;
+		rating.y = gf.y - 60;
 		} else {
 		rating.cameras = [camHUD];	
 		comboSpr.cameras = [camHUD];
