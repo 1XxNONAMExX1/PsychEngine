@@ -79,6 +79,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'bool',
 			false);
 		addOption(option);
+		
+			var option:Option = new Option('ratingGame',
+			"If checked,rating.cameras will be [camGame]",
+			'noReset',
+			'bool',
+			false);
+		addOption(option);
 
 		#if android
 		var option:Option = new Option('Vibrations',
