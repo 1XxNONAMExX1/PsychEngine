@@ -73,22 +73,14 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-#if (hxCodec >= "3.0.0")
-import hxcodec.flixel.FlxVideo as MP4Handler;
-#elseif (hxCodec == "2.6.1")
-import hxcodec.VideoHandler as MP4Handler;
-#elseif (hxCodec == "2.6.0")
 import VideoHandler as MP4Handler;
-#else
-import vlc.MP4Handler;
-#end
 #end
 
 using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	public static var STRUM_X = 48.5;
+	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
@@ -1627,21 +1619,12 @@ class PlayState extends MusicBeatState
 		}
 
 		var video:MP4Handler = new MP4Handler();
-		#if (hxCodec < "3.0.0")
 		video.playVideo(filepath);
 		video.finishCallback = function()
 		{
 			startAndEnd();
 			return;
 		}
-		#else
-		video.play(filepath);
-		video.onEndReached.add(function(){
-			video.dispose();
-			startAndEnd();
-			return;
-		});
-		#end
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
@@ -4137,6 +4120,7 @@ class PlayState extends MusicBeatState
 
 	private function popUpScore(note:Note = null):Void
 	{
+	
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
@@ -4187,7 +4171,13 @@ class PlayState extends MusicBeatState
 		}
 
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
+		
+		if (!ClientPrefs.ratingGame){
+		rating.cameras = [camGame];
+		} else {
 		rating.cameras = [camHUD];
+		}
+		
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
