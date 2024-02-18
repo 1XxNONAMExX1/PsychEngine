@@ -82,7 +82,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		
 			var option:Option = new Option('ratingGame',
 			"If checked,rating.cameras will be [camGame]",
-			'noReset',
+			'ratingGame',
 			'bool',
 			false);
 		addOption(option);
