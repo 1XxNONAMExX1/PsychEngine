@@ -210,5 +210,5 @@ class OptionsState extends MusicBeatState
 				PlayState.instance.vocals.pause();
 				PlayState.instance.vocals.volume = 0;
 			}
-		});
+		};
 }
