@@ -4194,17 +4194,7 @@ class PlayState extends MusicBeatState
 		comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
 		
-		if (!ClientPrefs.ratingGame){
-		rating.cameras = [camGame];
-		comboSpr.cameras = [camGame];
-		rating.x = gf.x - 40;
-		rating.y = gf.y - 60;
-		} else {
-		rating.cameras = [camHUD];	
-		comboSpr.cameras = [camHUD];
-		rating.x = coolText.x - 40;
-		rating.y -= 60;
-		}
+	
 
 		insert(members.indexOf(strumLineNotes), rating);
 		
@@ -4262,15 +4252,7 @@ class PlayState extends MusicBeatState
 		{
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			
-		if (!ClientPrefs.ratingGame){
-		numScore.cameras = [camGame];
-		numScore.x = gf.x - (43 * daLoop) - 90;
-		numScore.y = gf.y + 80;
-		} else {
-		numScore.cameras = [camHUD];	
-		numScore.x = coolText.x + (43 * daLoop) - 9;
-		numScore.y += 80;
-		}
+		
 			//numScore.cameras = [camHUD];
 			numScore.screenCenter();
 			numScore.x += ClientPrefs.comboOffset[2];
@@ -4294,6 +4276,24 @@ class PlayState extends MusicBeatState
 			numScore.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
 			numScore.velocity.x = FlxG.random.float(-5, 5) * playbackRate;
 			numScore.visible = !ClientPrefs.hideHud;
+			
+		if (!ClientPrefs.ratingGame){
+		rating.cameras = [camGame];
+		comboSpr.cameras = [camGame];
+		rating.x = gf.x - 40;
+		rating.y = gf.y - 60;
+		numScore.cameras = [camGame];
+	    numScore.x = gf.x + (43 * daLoop) - 90;
+        numScore.y = gf.y + 70;
+		} else {
+		rating.cameras = [camHUD];	
+		comboSpr.cameras = [camHUD];
+		rating.x = coolText.x - 40;
+		rating.y -= 60;
+		numScore.cameras = [camHUD];	
+		numScore.x = coolText.x + (43 * daLoop) - 9;
+		numScore.y += 80;
+		}
 
 			//if (combo >= 10 || combo == 0)
 			if(showComboNum)
