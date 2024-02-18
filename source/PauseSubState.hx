@@ -231,6 +231,8 @@ class PauseSubState extends MusicBeatSubstate
 					deleteSkipTimeText();
 					regenMenu();
 				case 'options':
+				PlayState.lastSong = PlayState.SONG.song;
+				PlayState.isSong = true;
 				LoadingState.loadAndSwitchState(new options.OptionsState());
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
