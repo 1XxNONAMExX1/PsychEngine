@@ -4295,9 +4295,6 @@ class PlayState extends MusicBeatState
 		numScore.cameras = [camHUD];	
 		numScore.x = coolText.x + (43 * daLoop) - 9;
 		numScore.y += 80;
-		numScore.screenCenter();
-		rating.screenCenter();
-		comboSpr.screenCenter();
 		}
 
 			//if (combo >= 10 || combo == 0)
