@@ -148,7 +148,7 @@ class OptionsState extends MusicBeatState
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if (PlayState.isSong){
-			loadSong(PlayState.lastSong,1);
+			loadSong(PlayState.lastSong);
 			} else {
 			MusicBeatState.switchState(new MainMenuState());
 			}
@@ -196,17 +196,13 @@ class OptionsState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
-    function loadSong(?name:String = null, ?difficultyNum:Int = -1)
+    function loadSong(?name:String = null){
     	if(name == null || name.length < 1)
 				name = PlayState.SONG.song;
-				difficultyNum = PlayState.storyDifficulty;
-
 			var poop = Highscore.formatSong(name, difficultyNum);
 			PlayState.SONG = Song.loadFromJson(poop, name);
-			PlayState.storyDifficulty = difficultyNum;
 			PlayState.instance.persistentUpdate = false;
 			LoadingState.loadAndSwitchState(new PlayState());
-
 			FlxG.sound.music.pause();
 			FlxG.sound.music.volume = 0;
 			if(PlayState.instance.vocals != null)
@@ -215,3 +211,4 @@ class OptionsState extends MusicBeatState
 				PlayState.instance.vocals.volume = 0;
 			}
 		});
+}
