@@ -206,12 +206,12 @@ class OptionsState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, name);
 			PlayState.instance.persistentUpdate = false;
 			LoadingState.loadAndSwitchState(new PlayState());
-			FlxG.sound.music.pause();
-			FlxG.sound.music.volume = 0;
+			//FlxG.sound.music.pause();
+			//FlxG.sound.music.volume = 0;
 			if(PlayState.instance.vocals != null)
 			{
-				PlayState.instance.vocals.pause();
-				PlayState.instance.vocals.volume = 0;
+				//PlayState.instance.vocals.pause();
+				//PlayState.instance.vocals.volume = 0;
 			}
 		}
 }
