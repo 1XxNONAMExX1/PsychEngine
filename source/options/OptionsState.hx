@@ -25,6 +25,8 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+import PlayState;
+
 
 using StringTools;
 
@@ -145,7 +147,11 @@ class OptionsState extends MusicBeatState
 
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
+			if (PlayState.isSong){
+			loadSong(PlayState.lastSong);
+			} else {
 			MusicBeatState.switchState(new MainMenuState());
+			}
 		}
 
 		#if android
@@ -190,3 +196,23 @@ class OptionsState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
+    function loadSong(?name:String = null, ?difficultyNum:Int = -1)
+    	if(name == null || name.length < 1)
+				name = PlayState.SONG.song;
+			if (difficultyNum == -1)
+				difficultyNum = PlayState.storyDifficulty;
+
+			var poop = Highscore.formatSong(name, difficultyNum);
+			PlayState.SONG = Song.loadFromJson(poop, name);
+			PlayState.storyDifficulty = difficultyNum;
+			PlayState.instance.persistentUpdate = false;
+			LoadingState.loadAndSwitchState(new PlayState());
+
+			FlxG.sound.music.pause();
+			FlxG.sound.music.volume = 0;
+			if(PlayState.instance.vocals != null)
+			{
+				PlayState.instance.vocals.pause();
+				PlayState.instance.vocals.volume = 0;
+			}
+		});
