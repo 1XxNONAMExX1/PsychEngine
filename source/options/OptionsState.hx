@@ -195,8 +195,7 @@ class OptionsState extends MusicBeatState
 		}
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
-}
-    function loadSong(?name:String = null){
+	function loadSong(?name:String = null){
     	if(name == null || name.length < 1)
 				name = PlayState.SONG.song;
 			var poop = Highscore.formatSong(name, difficultyNum);
@@ -210,5 +209,6 @@ class OptionsState extends MusicBeatState
 				PlayState.instance.vocals.pause();
 				PlayState.instance.vocals.volume = 0;
 			}
-		}
+		};
 }
+    
