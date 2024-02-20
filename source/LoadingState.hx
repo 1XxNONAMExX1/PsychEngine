@@ -32,7 +32,7 @@ class LoadingState extends MusicBeatState
 	var callbacks:MultiCallback;
 	var targetShit:Float = 0;
 
-	public static function new(target:FlxState, stopMusic:Bool, directory:String)
+	public function new(target:FlxState, stopMusic:Bool, directory:String)
 	{
 		super();
 		this.target = target;
