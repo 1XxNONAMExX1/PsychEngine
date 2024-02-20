@@ -4290,6 +4290,7 @@ class PlayState extends MusicBeatState
 		} else {
 		rating.cameras = [camHUD];	
 		comboSpr.cameras = [camHUD];
+		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
 		numScore.cameras = [camHUD];	
